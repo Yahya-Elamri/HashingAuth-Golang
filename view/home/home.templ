@@ -1,0 +1,51 @@
+package home
+
+import "github.com/Yahya-Elamri/hashingauth/utils"
+import "strconv"
+
+
+
+templ Show(user utils.UserData) {
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
+    </head>
+    <body class="bg-[#E2E8F0]">
+        <div class="w-full h-screen flex justify-center items-center">
+            <div class="w-[60%] flex justify-center items-center">
+                <h1 class="w-[80%] text-9xl text-center">Connected User info</h1>
+            </div>
+            <div class="w-[40%] flex flex-col justify-center items-center"> 
+                <div class="flex flex-col p-4 border-black border w-[500px] h-fit">
+                    <div class="flex items-center gap-5 justify-center w-full">
+                        <h1 class="w-1/2 text-start text-3xl">UserId</h1>
+                        <p class="w-1/2 text-start text-3xl">{strconv.FormatInt(user.Idusers, 10)}</p>
+                    </div>
+                    <div class="flex items-center gap-5 justify-center w-full">
+                        <h1 class="w-1/2 text-start text-3xl">UserName</h1>
+                        <p class="w-1/2 text-start text-3xl">{user.Username}</p>
+                    </div>
+                    <div class="flex items-center gap-5 justify-center w-full">
+                        <h1 class="w-1/2 text-start text-3xl">Email</h1>
+                        <p class="w-1/2 text-start text-3xl">{user.Email}</p>
+                    </div>
+                    <div class="w-full flex items-center gap-5 justify-center w-full overflow-hidden">
+                        <h1 class="w-1/2 text-start text-3xl">Password</h1>
+                        <p class="w-1/2 text-start text-balance text-3xl">{user.Password}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-5">
+                    <a href="/allusers">See All users Here</a>
+                    <a hx-get="/disconnect" href="/">disconnect Here</a>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    
+}

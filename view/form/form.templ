@@ -1,0 +1,77 @@
+package form
+
+
+
+templ LogInForm() {
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LogIn</title>
+        <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-[#E2E8F0]">
+        <div class="flex items-center justify-center w-full h-screen">
+            <div class="w-[45%]">
+                <h1 class="text-9xl">Fill out the Form to LogIn</h1>
+            </div>
+            <div class="bg-white shadow-xl rounded-xl w-[400px] h-[400px] flex flex-col items-center justify-center" hx-ext="response-targets">
+                <form class="w-full h-fit flex flex-col gap-4 items-center justify-center" hx-post="/userauth" hx-target-401="#username" hx-target-402="#password" hx-swap="innerHTML" >
+                        <div class="w-[75%] flex flex-col items-start justify-center" >
+                            <input class="w-full px-5 py-[10px] border rounded-lg" type="text" name="username" placeholder="Username or Email" required/>
+                            <div id='username' class="px-5"></div>
+                        </div>
+                        <div class="w-[75%] flex flex-col items-start justify-center" >
+                            <input class="w-full px-5 py-[10px] border rounded-lg" type="password" name="password" placeholder="Password" required/>
+                            <div id='password' class="text-sm text-bold px-5 text-red-500"></div>
+                        </div>
+                        <button class="w-[50%] px-4 py-2 bg-green-400 rounded-lg hover:bg-green-600 hover:text-white transition" type="submit"  >LogIn</button>
+                </form>
+                <a href="/signup" class="text-zinc-800 font-semibold">don't have an account sign up for free</a>
+            </div>
+        </div>
+    </body>
+    </html>
+}
+
+
+
+templ SignUpForm() {
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SignUp</title>
+        <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-[#E2E8F0]">
+        <div class="flex items-center justify-center gap-6 w-full h-screen">
+            <div class="w-[47%]">
+                <h1 class="text-9xl">Fill out the Form to SignUp</h1>
+            </div>
+            <div class="bg-white shadow-xl rounded-xl w-[400px] h-[400px] flex flex-col items-center justify-center" hx-ext="response-targets">
+                <form class="w-full h-fit flex flex-col gap-4 items-center justify-center" hx-post="/addnewuser" hx-target-404="#password" hx-swap="innerHTML">
+                        <div class="w-[75%] flex flex-col items-start justify-center" >
+                            <input class="w-full px-5 py-[10px] border rounded-lg" hx-post="/checkuser" hx-target-401="#username" hx-swap="innerHTML" hx-target-301="#username" type="text" name="username" placeholder="Username" required/>
+                            <div id='username' class="px-5"></div>
+                        </div>
+                        <div class="w-[75%] flex flex-col items-start justify-center">
+                            <input class="w-full px-5 py-[10px] border rounded-lg" hx-post="/checkemail" hx-target-402="#email" hx-swap="innerHTML" hx-target-302="#email" type="email" name="email" placeholder="Email" required/>
+                            <div id='email' class="px-5"></div>
+                        </div>
+                        <div class="w-[75%] flex flex-col items-start justify-center" >
+                            <input class="w-full px-5 py-[10px] border rounded-lg" type="password" name="password" placeholder="Password" required/>
+                            <div id='password' class="text-sm text-bold px-5 text-red-500"></div>
+                        </div>
+                        <button class="w-[50%] px-4 py-2 bg-green-400 rounded-lg hover:bg-green-600 hover:text-white transition" type="submit"  >SignUp</button>
+                </form>
+                <a href="/login" class="text-zinc-800 font-semibold">already have an account log in here</a>
+            </div>
+        </div>
+    </body>
+    </html>
+}
